@@ -63,24 +63,28 @@ main { overflow: hidden; }
 .brand strong { display: block; font-size: 18px; color: var(--green-900); }
 .brand span { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
 .logoMark {
-  flex: 0 0 auto;
+  flex: 0 0 50px;
   width: 50px;
   height: 50px;
+  min-width: 50px;
+  min-height: 50px;
   border-radius: 17px;
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  gap: 0;
+  overflow: visible;
   font-weight: 950;
-  letter-spacing: -10px;
-  padding-right: 10px;
-  color: var(--green-900);
-  background: linear-gradient(135deg, #ffffff, #e4f5cd 62%, #c8e98a);
+  font-size: 22px;
+  letter-spacing: -2.8px;
+  line-height: 1;
+  padding: 0 3px 0 0;
+  color: var(--green-900) !important;
+  background: linear-gradient(135deg, #ffffff, #e4f5cd 62%, #c8e98a) !important;
   border: 1px solid rgba(11, 90, 34, .22);
   box-shadow: 0 14px 30px rgba(9, 55, 20, .12);
+  opacity: 1 !important;
+  visibility: visible !important;
 }
-.logoMark span:first-child { font-size: 32px; transform: translateX(-1px); }
-.logoMark span:last-child { font-size: 31px; color: var(--green-500); transform: translateX(-2px) rotate(-10deg); }
 .navActions { display: flex; align-items: center; gap: 10px; }
 .navLink {
   color: var(--green-800);
@@ -178,7 +182,7 @@ h3 { margin: 0 0 8px; color: var(--green-950); }
   box-shadow: var(--shadow);
   border: 1px solid rgba(255,255,255,.18);
 }
-.heroCard .logoMark { background: linear-gradient(135deg, #ffffff, #e4f5cd 62%, #c8e98a); }
+.heroCard .logoMark { background: linear-gradient(135deg, #ffffff, #e4f5cd 62%, #c8e98a) !important; }
 .heroCardTop { display: flex; align-items: center; justify-content: space-between; gap: 16px; color: #dff2cc; font-weight: 800; }
 .heroCard h2 { color: #fff; font-size: clamp(28px, 3.8vw, 44px); }
 .heroCard p { color: #dbefca; line-height: 1.55; }
@@ -269,13 +273,28 @@ footer strong { color: var(--green-900); }
 }
 
 @media (max-width: 620px) {
-  .nav { align-items: center; }
+  .nav { align-items: center; gap: 10px; }
   .navLink { display: none; }
   .navActions .button { display: none; }
-  .brand { gap: 10px; }
+  .brand { gap: 10px; min-width: auto; }
   .brand strong { font-size: 17px; }
   .brand span { display: none; }
-  .logoMark { width: 48px; height: 48px; border-radius: 16px; opacity: 1; visibility: visible; }
+  .brand .logoMark {
+    display: inline-flex !important;
+    flex: 0 0 48px !important;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+    color: var(--green-900) !important;
+    background: #ffffff !important;
+    border: 2px solid rgba(11, 90, 34, .28) !important;
+    box-shadow: 0 12px 26px rgba(9, 55, 20, .16) !important;
+  }
   .heroActions .button, .sideCta .button, .centerCta .button { width: 100%; }
   .textLink { width: 100%; text-align: center; }
   .trustLine span { width: 100%; text-align: center; }
