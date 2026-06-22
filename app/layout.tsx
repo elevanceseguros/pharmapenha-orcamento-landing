@@ -1,6 +1,14 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import type { ReactNode } from 'react';
 import './globals.css';
+
+const googleTagIds = [
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
+].filter(Boolean) as string[];
+
+const primaryGoogleTagId = googleTagIds[0];
 
 export const metadata: Metadata = {
   title: 'Orçamento Pharmapenha | Manipulação pelo WhatsApp',
@@ -16,7 +24,31 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        {children}
+
+        {primaryGoogleTagId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${primaryGoogleTagId}`}
+              strategy="afterInteractive"
+            />
+            <Script
+              id="google-tag-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  window.gtag = gtag;
+                  gtag('js', new Date());
+                  ${googleTagIds.map((id) => `gtag('config', '${id}', { send_page_view: true });`).join('\n')}
+                `
+              }}
+            />
+          </>
+        ) : null}
+      </body>
     </html>
   );
 }
