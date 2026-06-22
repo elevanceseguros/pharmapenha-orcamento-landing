@@ -3,8 +3,8 @@
 import type { MouseEvent, ReactNode } from 'react';
 
 const WHATSAPP_NUMBER = '5511991830136';
-const BASE_MESSAGE = 'Olá! Vim pela página de orçamento da Pharmapenha e gostaria de solicitar uma cotação.';
-const DEFAULT_WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`${BASE_MESSAGE}\n\nOrigem: Landing Orçamento\nFonte: Google Ads`)}`;
+const BASE_MESSAGE = 'Olá! Tudo bem? Gostaria de solicitar um orçamento de manipulação com a Pharmapenha. Posso enviar minha receita ou as informações por aqui?';
+const DEFAULT_WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(BASE_MESSAGE)}`;
 
 declare global {
   interface Window {
@@ -13,46 +13,43 @@ declare global {
   }
 }
 
-function buildWhatsAppUrl(button: string) {
-  if (typeof window === 'undefined') return DEFAULT_WHATSAPP_URL;
+function getTrackingParams() {
+  if (typeof window === 'undefined') return {};
   const params = new URLSearchParams(window.location.search);
-  const source = params.get('utm_source') || 'Google Ads';
-  const medium = params.get('utm_medium');
-  const campaign = params.get('utm_campaign');
-  const term = params.get('utm_term');
-  const content = params.get('utm_content');
-  const gclid = params.get('gclid');
 
-  const details = [
-    'Origem: Landing Orçamento',
-    `Fonte: ${source}`,
-    medium ? `Mídia: ${medium}` : null,
-    campaign ? `Campanha: ${campaign}` : null,
-    term ? `Termo: ${term}` : null,
-    content ? `Anúncio: ${content}` : null,
-    gclid ? `GCLID: ${gclid}` : null,
-    `Botão: ${button}`
-  ].filter(Boolean).join('\n');
+  return {
+    utm_source: params.get('utm_source') || 'google_ads',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+    utm_term: params.get('utm_term') || '',
+    utm_content: params.get('utm_content') || '',
+    gclid: params.get('gclid') || ''
+  };
+}
 
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`${BASE_MESSAGE}\n\n${details}`)}`;
+function buildWhatsAppUrl() {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(BASE_MESSAGE)}`;
 }
 
 function trackWhatsApp(button: string) {
   if (typeof window === 'undefined') return;
+  const trackingParams = getTrackingParams();
 
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     event: 'whatsapp_orcamento_click',
     button_label: button,
     page_location: window.location.href,
-    page_path: window.location.pathname
+    page_path: window.location.pathname,
+    ...trackingParams
   });
 
   if (typeof window.gtag === 'function') {
     window.gtag('event', 'whatsapp_orcamento_click', {
       event_category: 'lead',
       event_label: button,
-      transport_type: 'beacon'
+      transport_type: 'beacon',
+      ...trackingParams
     });
   }
 }
@@ -60,15 +57,14 @@ function trackWhatsApp(button: string) {
 function LogoMark() {
   return (
     <div className="logoMark" aria-label="Pharmapenha">
-      <span>P</span><span>P</span>
+      PP
     </div>
   );
 }
 
 function WhatsAppButton({ children, button, secondary = false, compact = false }: { children: ReactNode; button: string; secondary?: boolean; compact?: boolean }) {
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
-    const url = buildWhatsAppUrl(button);
-    event.currentTarget.href = url;
+    event.currentTarget.href = buildWhatsAppUrl();
     trackWhatsApp(button);
   }
 
@@ -81,6 +77,7 @@ function WhatsAppButton({ children, button, secondary = false, compact = false }
       rel="noopener noreferrer"
       data-conversion="whatsapp_orcamento_click"
       data-button={button}
+      data-whatsapp-number={WHATSAPP_NUMBER}
     >
       <span className="waIcon">✆</span>
       {children}
