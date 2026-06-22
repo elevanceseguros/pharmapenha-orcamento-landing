@@ -176,11 +176,11 @@ export default function Home() {
         </div>
         <div className="visualGrid">
           <figure className="visualCard visualCardLarge">
-            <img src="/images/recepcao-pharmapenha.webp" alt="Recepção moderna de farmácia de manipulação" loading="lazy" />
+            <img src="/Images/recepcao-pharmapenha.webp" alt="Recepção moderna de farmácia de manipulação" loading="lazy" />
             <figcaption>Recepção acolhedora para atendimento e orçamento</figcaption>
           </figure>
           <figure className="visualCard">
-            <img src="/images/laboratorio-pharmapenha.webp" alt="Laboratório moderno de farmácia de manipulação" loading="lazy" />
+            <img src="/Images/laboratorio-pharmapenha.webp" alt="Laboratório moderno de farmácia de manipulação" loading="lazy" />
             <figcaption>Ambiente de manipulação limpo e organizado</figcaption>
           </figure>
         </div>
