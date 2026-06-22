@@ -3,8 +3,10 @@ import Script from 'next/script';
 import type { ReactNode } from 'react';
 import './globals.css';
 
+const defaultGaMeasurementId = 'G-0CMMHZ0X0F';
+
 const googleTagIds = [
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || defaultGaMeasurementId,
   process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
 ].filter(Boolean) as string[];
 
