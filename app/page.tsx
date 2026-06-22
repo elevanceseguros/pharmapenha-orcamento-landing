@@ -168,6 +168,24 @@ export default function Home() {
         <div className="statCard"><strong>CRF-SP</strong><span>responsável técnico informado no rodapé</span></div>
       </section>
 
+      <section className="section visualProof">
+        <div className="visualIntro">
+          <span className="eyebrow">Ambiente Pharmapenha</span>
+          <h2>Atendimento, cuidado e manipulação com aparência profissional</h2>
+          <p>Imagens de apoio para reforçar confiança, organização e cuidado farmacêutico, sem promessas de resultado e sem medicamentos identificáveis.</p>
+        </div>
+        <div className="visualGrid">
+          <figure className="visualCard visualCardLarge">
+            <img src="/images/recepcao-pharmapenha.webp" alt="Recepção moderna de farmácia de manipulação" loading="lazy" />
+            <figcaption>Recepção acolhedora para atendimento e orçamento</figcaption>
+          </figure>
+          <figure className="visualCard">
+            <img src="/images/laboratorio-pharmapenha.webp" alt="Laboratório moderno de farmácia de manipulação" loading="lazy" />
+            <figcaption>Ambiente de manipulação limpo e organizado</figcaption>
+          </figure>
+        </div>
+      </section>
+
       <section className="section split" id="como-funciona">
         <div>
           <span className="eyebrow">Processo simples</span>
