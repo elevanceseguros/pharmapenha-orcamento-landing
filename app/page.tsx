@@ -1,9 +1,10 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 
 const WHATSAPP_NUMBER = '5511991830136';
 const BASE_MESSAGE = 'Olá! Vim pela página de orçamento da Pharmapenha e gostaria de solicitar uma cotação.';
+const DEFAULT_WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`${BASE_MESSAGE}\n\nOrigem: Landing Orçamento\nFonte: Google Ads`)}`;
 
 declare global {
   interface Window {
@@ -13,19 +14,23 @@ declare global {
 }
 
 function buildWhatsAppUrl(button: string) {
-  if (typeof window === 'undefined') return '#';
+  if (typeof window === 'undefined') return DEFAULT_WHATSAPP_URL;
   const params = new URLSearchParams(window.location.search);
   const source = params.get('utm_source') || 'Google Ads';
+  const medium = params.get('utm_medium');
   const campaign = params.get('utm_campaign');
   const term = params.get('utm_term');
   const content = params.get('utm_content');
+  const gclid = params.get('gclid');
 
   const details = [
     'Origem: Landing Orçamento',
     `Fonte: ${source}`,
+    medium ? `Mídia: ${medium}` : null,
     campaign ? `Campanha: ${campaign}` : null,
     term ? `Termo: ${term}` : null,
     content ? `Anúncio: ${content}` : null,
+    gclid ? `GCLID: ${gclid}` : null,
     `Botão: ${button}`
   ].filter(Boolean).join('\n');
 
@@ -46,7 +51,8 @@ function trackWhatsApp(button: string) {
   if (typeof window.gtag === 'function') {
     window.gtag('event', 'whatsapp_orcamento_click', {
       event_category: 'lead',
-      event_label: button
+      event_label: button,
+      transport_type: 'beacon'
     });
   }
 }
@@ -59,14 +65,22 @@ function LogoMark() {
   );
 }
 
-function WhatsAppButton({ children, button, secondary = false }: { children: ReactNode; button: string; secondary?: boolean }) {
+function WhatsAppButton({ children, button, secondary = false, compact = false }: { children: ReactNode; button: string; secondary?: boolean; compact?: boolean }) {
+  function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+    const url = buildWhatsAppUrl(button);
+    event.currentTarget.href = url;
+    trackWhatsApp(button);
+  }
+
   return (
     <a
-      className={secondary ? 'button buttonSecondary' : 'button'}
-      href={buildWhatsAppUrl(button)}
-      onClick={() => trackWhatsApp(button)}
+      className={`${secondary ? 'button buttonSecondary' : 'button'}${compact ? ' buttonCompact' : ''}`}
+      href={DEFAULT_WHATSAPP_URL}
+      onClick={handleClick}
       target="_blank"
       rel="noopener noreferrer"
+      data-conversion="whatsapp_orcamento_click"
+      data-button={button}
     >
       <span className="waIcon">✆</span>
       {children}
@@ -112,7 +126,10 @@ export default function Home() {
               <span>Farmácia de manipulação</span>
             </div>
           </a>
-          <a className="navLink" href="#como-funciona">Como funciona</a>
+          <div className="navActions">
+            <a className="navLink" href="#como-funciona">Como funciona</a>
+            <WhatsAppButton button="Cabeçalho" compact>WhatsApp</WhatsAppButton>
+          </div>
         </nav>
 
         <div className="heroGrid" id="top">
@@ -159,6 +176,7 @@ export default function Home() {
           <span className="eyebrow">Processo simples</span>
           <h2>Como funciona</h2>
           <p>Uma experiência direta para quem quer solicitar orçamento sem preencher formulários longos.</p>
+          <div className="sideCta"><WhatsAppButton button="Como funciona">Enviar informações pelo WhatsApp</WhatsAppButton></div>
         </div>
         <div className="steps">
           <div><b>1</b><h3>Envie sua receita ou solicitação</h3><p>Clique no botão e mande as informações pelo WhatsApp.</p></div>
@@ -174,6 +192,7 @@ export default function Home() {
           {services.map((service) => <div className="serviceCard" key={service}>✓ {service}</div>)}
         </div>
         <p className="note">A manipulação é realizada conforme solicitação, disponibilidade e avaliação farmacêutica. Não fazemos promessas de resultado ou orientação médica pela página.</p>
+        <div className="centerCta"><WhatsAppButton button="Serviços">Solicitar orçamento pelo WhatsApp</WhatsAppButton></div>
       </section>
 
       <section className="section split greenPanel">
@@ -187,6 +206,29 @@ export default function Home() {
           <p>✓ Experiência em manipulação</p>
           <p>✓ Parcelamento conforme condições disponíveis</p>
           <p>✓ Retirada na loja ou entrega sob consulta</p>
+        </div>
+      </section>
+
+      <section className="section location" id="localizacao">
+        <div className="locationIntro">
+          <span className="eyebrow">Atendimento e localização</span>
+          <h2>Fale pelo WhatsApp ou venha até nossa loja na Penha/SP</h2>
+          <p>Estamos em endereço físico tradicional na Penha de França, com atendimento para orçamento, retirada e informações sobre entrega.</p>
+        </div>
+        <div className="locationGrid">
+          <div className="locationCard">
+            <strong>Endereço</strong>
+            <p>Praça Nossa Senhora da Penha, 95<br />Penha de França - São Paulo - SP<br />CEP: 03632-010</p>
+          </div>
+          <div className="locationCard">
+            <strong>Horário de funcionamento</strong>
+            <p>Seg a Sex das 8h às 18h15<br />Sábados das 8h às 13h</p>
+          </div>
+          <div className="locationCard locationAction">
+            <strong>Atendimento</strong>
+            <p>WhatsApp: (11) 99183-0136</p>
+            <WhatsAppButton button="Localização" compact>Chamar agora</WhatsAppButton>
+          </div>
         </div>
       </section>
 
@@ -214,6 +256,7 @@ export default function Home() {
         <strong>Pharmapenha</strong>
         <span>CNPJ 60.348.547/0001-04</span>
         <span>Responsável técnico: Rodrigo Farias Diogo — CRF-SP nº 62207</span>
+        <span>Praça Nossa Senhora da Penha, 95 - Penha de França - São Paulo/SP</span>
       </footer>
 
       <div className="mobileSticky">
