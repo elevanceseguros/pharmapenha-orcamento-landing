@@ -1,5 +1,7 @@
 'use client';
 
+import type { ReactNode } from 'react';
+
 const WHATSAPP_NUMBER = '5511991830136';
 const BASE_MESSAGE = 'Olá! Vim pela página de orçamento da Pharmapenha e gostaria de solicitar uma cotação.';
 
@@ -57,7 +59,7 @@ function LogoMark() {
   );
 }
 
-function WhatsAppButton({ children, button, secondary = false }: { children: React.ReactNode; button: string; secondary?: boolean }) {
+function WhatsAppButton({ children, button, secondary = false }: { children: ReactNode; button: string; secondary?: boolean }) {
   return (
     <a
       className={secondary ? 'button buttonSecondary' : 'button'}
