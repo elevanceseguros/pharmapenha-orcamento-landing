@@ -3,26 +3,19 @@ import Script from 'next/script';
 import type { ReactNode } from 'react';
 import './globals.css';
 
-const defaultGaMeasurementId = 'G-0CMMHZ0X0F';
-
-const googleTagIds = [
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || defaultGaMeasurementId,
-  process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
-].filter(Boolean) as string[];
-
-const primaryGoogleTagId = googleTagIds[0];
+const GA_ID = 'G-0CMMHZ0X0F';
 
 export const metadata: Metadata = {
-  title: 'Orçamento Pharmapenha | Farmácia de Manipulação na Penha/SP',
-  description: 'Solicite orçamento de manipulação pelo WhatsApp. Mais de 35 anos na Penha/SP. Envie sua receita e receba atendimento farmacêutico com agilidade.',
+  title: 'Atendimento Pharmapenha | Penha/SP',
+  description: 'Fale com a equipe Pharmapenha pelo WhatsApp. Mais de 35 anos na Penha/SP, loja física e atendimento farmacêutico responsável.',
   robots: { index: true, follow: true },
-  keywords: ['farmácia de manipulação penha', 'manipulação penha sp', 'orçamento manipulação whatsapp', 'pharmapenha', 'fórmulas manipuladas são paulo'],
+  keywords: ['pharmapenha', 'pharmapenha penha', 'farmácia penha sp', 'atendimento farmacêutico penha', 'whatsapp pharmapenha'],
   alternates: {
     canonical: 'https://orcamentopharmapenha.online'
   },
   openGraph: {
-    title: 'Orçamento Pharmapenha | Farmácia de Manipulação na Penha/SP',
-    description: 'Solicite orçamento de manipulação pelo WhatsApp. Mais de 35 anos na Penha/SP.',
+    title: 'Atendimento Pharmapenha | Penha/SP',
+    description: 'Canal oficial de atendimento da Pharmapenha pelo WhatsApp. Mais de 35 anos na Penha/SP.',
     type: 'website',
     url: 'https://orcamentopharmapenha.online',
     siteName: 'Pharmapenha',
@@ -32,14 +25,14 @@ export const metadata: Metadata = {
         url: 'https://orcamentopharmapenha.online/images/og-pharmapenha.jpg',
         width: 1200,
         height: 630,
-        alt: 'Pharmapenha – Farmácia de Manipulação na Penha/SP'
+        alt: 'Pharmapenha – Atendimento Farmacêutico na Penha/SP'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Orçamento Pharmapenha | Farmácia de Manipulação',
-    description: 'Solicite orçamento de manipulação pelo WhatsApp. Mais de 35 anos na Penha/SP.',
+    title: 'Atendimento Pharmapenha',
+    description: 'Fale com a equipe Pharmapenha pelo WhatsApp. Mais de 35 anos na Penha/SP.',
     images: ['https://orcamentopharmapenha.online/images/og-pharmapenha.jpg']
   }
 };
@@ -53,12 +46,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Pharmacy",
-              "name": "Pharmapenha – Farmácia de Manipulação",
+              "@type": "LocalBusiness",
+              "name": "Pharmapenha",
               "url": "https://orcamentopharmapenha.online",
               "logo": "https://orcamentopharmapenha.online/images/logo-pharmapenha.png",
               "image": "https://orcamentopharmapenha.online/images/og-pharmapenha.jpg",
-              "description": "Farmácia de manipulação com mais de 35 anos de tradição na Penha, São Paulo. Atendimento pelo WhatsApp para orçamentos.",
+              "description": "Canal oficial de atendimento da Pharmapenha na Penha, São Paulo.",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Praça Nossa Senhora da Penha, 95",
@@ -101,27 +94,23 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
         {children}
 
-        {primaryGoogleTagId ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${primaryGoogleTagId}`}
-              strategy="afterInteractive"
-            />
-            <Script
-              id="google-tag-init"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  window.gtag = gtag;
-                  gtag('js', new Date());
-                  ${googleTagIds.map((id) => `gtag('config', '${id}', { send_page_view: true });`).join('\n')}
-                `
-              }}
-            />
-          </>
-        ) : null}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-tag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}', { send_page_view: true });
+            `
+          }}
+        />
       </body>
     </html>
   );
