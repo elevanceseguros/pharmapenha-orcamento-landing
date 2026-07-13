@@ -3,7 +3,7 @@
 import type { MouseEvent, ReactNode } from 'react';
 
 const WHATSAPP_NUMBER = '5511991830136';
-const BASE_MESSAGE = 'Olá! Tudo bem? Vim pelo site da Pharmapenha e gostaria de solicitar um orçamento de manipulação.';
+const BASE_MESSAGE = 'Olá! Tudo bem? Vim pelo site da Pharmapenha e gostaria de fazer um orçamento.';
 const DEFAULT_WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(BASE_MESSAGE)}`;
 
 declare global {
@@ -59,11 +59,11 @@ function LogoMark() {
   );
 }
 
-function Icon({ name }: { name: 'recipe' | 'team' | 'chat' | 'store' | 'truck' | 'shield' | 'spark' | 'leaf' | 'clock' | 'map' | 'check' }) {
+function Icon({ name }: { name: 'document' | 'team' | 'chat' | 'store' | 'truck' | 'shield' | 'spark' | 'leaf' | 'clock' | 'map' | 'check' }) {
   const common = { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', xmlns: 'http://www.w3.org/2000/svg', 'aria-hidden': true };
   const stroke = { stroke: 'currentColor', strokeWidth: 1.9, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
   const icons = {
-    recipe: <svg {...common}><path {...stroke} d="M7 3h7l3 3v15H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path {...stroke} d="M14 3v4h4M8 11h8M8 15h8M8 19h5"/></svg>,
+    document: <svg {...common}><path {...stroke} d="M7 3h7l3 3v15H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path {...stroke} d="M14 3v4h4M8 11h8M8 15h8M8 19h5"/></svg>,
     team: <svg {...common}><path {...stroke} d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle {...stroke} cx="9.5" cy="7" r="4"/><path {...stroke} d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
     chat: <svg {...common}><path {...stroke} d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.8 8.8 0 0 1-3.8-.86L3 20l1.1-4.1A8.2 8.2 0 1 1 21 11.5Z"/><path {...stroke} d="M8 11h8M8 15h5"/></svg>,
     store: <svg {...common}><path {...stroke} d="M4 10h16l-1-5H5l-1 5Z"/><path {...stroke} d="M6 10v10h12V10M9 20v-6h6v6"/></svg>,
@@ -97,13 +97,13 @@ const stats = [
 ];
 
 const steps = [
-  { icon: 'recipe' as const, title: 'Envie sua receita', text: 'Chame no WhatsApp oficial e envie as informações necessárias para iniciar seu orçamento.' },
-  { icon: 'team' as const, title: 'Receba orientação inicial', text: 'Nossa equipe confere a solicitação e informa os próximos passos com clareza.' },
-  { icon: 'store' as const, title: 'Finalize pelo canal adequado', text: 'Você combina atendimento, retirada na loja ou entrega sob consulta, conforme disponibilidade.' }
+  { icon: 'chat' as const, title: 'Fale com um atendente', text: 'Chame no WhatsApp oficial e conte o que você precisa para iniciarmos seu orçamento.' },
+  { icon: 'team' as const, title: 'Receba orientação inicial', text: 'Nossa equipe entende sua solicitação e informa os próximos passos com clareza.' },
+  { icon: 'store' as const, title: 'Combine o atendimento', text: 'Você combina atendimento, retirada na loja ou entrega sob consulta, conforme disponibilidade.' }
 ];
 
 const services = [
-  { icon: 'recipe' as const, title: 'Orçamento de manipulação', text: 'Envie sua receita ou solicitação para atendimento da equipe Pharmapenha.' },
+  { icon: 'document' as const, title: 'Orçamento de manipulação', text: 'Solicite um orçamento pelo WhatsApp oficial para atendimento da equipe Pharmapenha.' },
   { icon: 'chat' as const, title: 'Atendimento pelo WhatsApp', text: 'Canal oficial para falar com a equipe de forma prática e segura.' },
   { icon: 'team' as const, title: 'Orientação farmacêutica', text: 'Atendimento conduzido por equipe preparada e responsável técnico habilitado.' },
   { icon: 'store' as const, title: 'Loja física na Penha', text: 'Estrutura presencial para atendimento, retirada e suporte ao cliente.' },
@@ -112,7 +112,7 @@ const services = [
 
 const benefits = [
   { icon: 'spark' as const, title: 'Mais de 35 anos na Penha/SP' },
-  { icon: 'recipe' as const, title: 'Orçamento de manipulação pelo WhatsApp' },
+  { icon: 'chat' as const, title: 'Orçamento pelo WhatsApp oficial' },
   { icon: 'store' as const, title: 'Loja física e equipe preparada' },
   { icon: 'truck' as const, title: 'Retirada na loja ou entrega sob consulta' },
   { icon: 'shield' as const, title: 'Cuidado farmacêutico responsável' },
@@ -120,8 +120,8 @@ const benefits = [
 ];
 
 const faq = [
-  { title: 'Como solicito um orçamento?', text: 'Clique no botão de WhatsApp, envie sua receita ou solicitação e aguarde a orientação da equipe Pharmapenha.' },
-  { title: 'Preciso enviar receita?', text: 'Quando a fórmula exigir prescrição, a equipe orienta o envio da receita e os próximos passos para atendimento.' },
+  { title: 'Como solicito um orçamento?', text: 'Clique no botão de WhatsApp, fale com um atendente e aguarde a orientação da equipe Pharmapenha.' },
+  { title: 'O atendimento é presencial?', text: 'Sim. A Pharmapenha possui loja física na Penha de França, em São Paulo, com equipe pronta para atendimento local.' },
   { title: 'Vocês entregam?', text: 'A retirada pode ser feita na loja e as opções de entrega são informadas conforme região e disponibilidade.' },
   { title: 'Onde fica a loja?', text: 'Estamos na Praça Nossa Senhora da Penha, 95, na Penha de França, em São Paulo.' }
 ];
@@ -137,27 +137,27 @@ export default function Home() {
             <LogoMark />
             <div>
               <strong>Pharmapenha</strong>
-              <span>Orçamento de Manipulação • Penha/SP</span>
+              <span>Farmácia de Manipulação • Penha/SP</span>
             </div>
           </a>
           <div className="navActions">
             <a className="navLink" href="#como-funciona">Como funciona</a>
-            <WhatsAppButton button="Cabeçalho" compact>WhatsApp</WhatsAppButton>
+            <WhatsAppButton button="Cabeçalho" compact>Falar com Atendente</WhatsAppButton>
           </div>
         </nav>
 
         <div className="heroGrid" id="top">
           <div className="heroCopy">
             <div className="badge">Canal oficial para orçamento</div>
-            <h1>Envie sua receita e solicite seu orçamento de manipulação</h1>
-            <p className="lead">Atendimento da Pharmapenha para fórmulas manipuladas, com orientação da equipe e opção de retirada ou entrega sob consulta.</p>
+            <h1>Farmácia de manipulação na Penha com orçamento pelo WhatsApp</h1>
+            <p className="lead">Atendimento local da Pharmapenha para fórmulas personalizadas, com equipe preparada, laboratório próprio e opção de retirada ou entrega sob consulta.</p>
             <div className="heroActions">
-              <WhatsAppButton button="Hero principal">Solicitar orçamento pelo WhatsApp</WhatsAppButton>
+              <WhatsAppButton button="Hero principal">Fazer orçamento pelo WhatsApp</WhatsAppButton>
               <a className="textLink" href="#servicos">Ver formas de atendimento</a>
             </div>
             <div className="trustLine">
               <span>Mais de 35 anos na Penha/SP</span>
-              <span>Atendimento farmacêutico</span>
+              <span>Atendimento humanizado</span>
               <span>Retirada ou entrega sob consulta</span>
             </div>
           </div>
@@ -168,13 +168,13 @@ export default function Home() {
               <span>Orçamento pelo WhatsApp</span>
             </div>
             <h2>Fale com a Pharmapenha</h2>
-            <p>Use o canal oficial para enviar sua receita ou solicitação e receber orientação de atendimento.</p>
+            <p>Use o canal oficial para falar com nossa equipe e receber orientação de atendimento.</p>
             <div className="heroChecklist">
-              <div><Icon name="recipe" /><span>Envie sua receita ou solicitação</span></div>
+              <div><Icon name="chat" /><span>Fale com um atendente</span></div>
               <div><Icon name="team" /><span>Receba orientação inicial</span></div>
               <div><Icon name="truck" /><span>Combine retirada na loja ou entrega sob consulta</span></div>
             </div>
-            <WhatsAppButton button="Card lateral" secondary>Solicitar orçamento</WhatsAppButton>
+            <WhatsAppButton button="Card lateral" secondary>Fazer orçamento</WhatsAppButton>
           </div>
         </div>
       </section>
@@ -186,7 +186,7 @@ export default function Home() {
       <section className="section visualProof">
         <div className="visualIntro">
           <span className="eyebrow">Ambiente Pharmapenha</span>
-          <h2>Um ambiente pensado para cuidado, confiança e qualidade</h2>
+          <h2>Um ambiente pensado para confiança, tradição e qualidade</h2>
           <p>Na Pharmapenha, unimos atendimento acolhedor, estrutura organizada e cuidado farmacêutico para oferecer uma experiência mais segura e prática.</p>
         </div>
         <div className="visualGrid">
@@ -196,7 +196,7 @@ export default function Home() {
           </figure>
           <figure className="visualCard">
             <img src="/images/laboratorio-pharmapenha.webp" alt="Ambiente técnico moderno da Pharmapenha" loading="lazy" />
-            <figcaption><strong>Cuidado e estrutura</strong><span>Ambiente limpo, estruturado e preparado para um atendimento responsável.</span></figcaption>
+            <figcaption><strong>Laboratório próprio</strong><span>Ambiente limpo, estruturado e preparado para um atendimento responsável.</span></figcaption>
           </figure>
         </div>
       </section>
@@ -204,9 +204,9 @@ export default function Home() {
       <section className="section split" id="como-funciona">
         <div className="sectionIntro">
           <span className="eyebrow">Processo simples</span>
-          <h2>Como solicitar seu orçamento</h2>
+          <h2>Como fazer seu orçamento</h2>
           <p>Um processo simples, rápido e pensado para facilitar seu atendimento.</p>
-          <div className="sideCta"><WhatsAppButton button="Como funciona">Solicitar pelo WhatsApp</WhatsAppButton></div>
+          <div className="sideCta"><WhatsAppButton button="Como funciona">Falar com Atendente</WhatsAppButton></div>
         </div>
         <div className="steps">
           {steps.map((step, index) => <div className="stepCard" key={step.title}><Icon name={step.icon} /><b>{String(index + 1).padStart(2, '0')}</b><h3>{step.title}</h3><p>{step.text}</p></div>)}
@@ -221,7 +221,7 @@ export default function Home() {
           {services.map((service) => <div className="serviceCard" key={service.title}><Icon name={service.icon} /><h3>{service.title}</h3><p>{service.text}</p></div>)}
         </div>
         <p className="note">As orientações e opções de atendimento são informadas pela equipe Pharmapenha conforme cada solicitação e disponibilidade.</p>
-        <div className="centerCta"><WhatsAppButton button="Serviços">Solicitar orçamento pelo WhatsApp</WhatsAppButton></div>
+        <div className="centerCta"><WhatsAppButton button="Serviços">Fazer orçamento pelo WhatsApp</WhatsAppButton></div>
       </section>
 
       <section className="section greenPanel">
@@ -244,7 +244,7 @@ export default function Home() {
         <div className="locationGrid">
           <div className="locationCard"><Icon name="map" /><strong>Endereço</strong><p>Praça Nossa Senhora da Penha, 95<br />Penha de França - São Paulo - SP<br />CEP: 03632-010</p></div>
           <div className="locationCard"><Icon name="clock" /><strong>Horário</strong><p>Segunda a sexta: 8h às 18h15<br />Sábados: 8h às 13h</p></div>
-          <div className="locationCard locationAction"><Icon name="chat" /><strong>Atendimento</strong><p>WhatsApp: (11) 99183-0136</p><WhatsAppButton button="Localização" compact>Falar com a Pharmapenha</WhatsAppButton></div>
+          <div className="locationCard locationAction"><Icon name="chat" /><strong>Atendimento</strong><p>WhatsApp: (11) 99183-0136</p><WhatsAppButton button="Localização" compact>Falar com Atendente</WhatsAppButton></div>
         </div>
       </section>
 
@@ -258,20 +258,20 @@ export default function Home() {
 
       <section className="section finalCta">
         <LogoMark />
-        <h2>Quer solicitar seu orçamento?</h2>
+        <h2>Quer fazer seu orçamento?</h2>
         <p>Entre em contato pelo WhatsApp oficial e receba orientação da nossa equipe.</p>
-        <WhatsAppButton button="CTA final">Solicitar orçamento pelo WhatsApp</WhatsAppButton>
+        <WhatsAppButton button="CTA final">Fazer orçamento pelo WhatsApp</WhatsAppButton>
       </section>
 
       <footer>
         <div className="footerGrid">
-          <div><div className="footerBrand"><LogoMark /><div><strong>Pharmapenha</strong><span>Orçamento de Manipulação • Penha/SP</span></div></div><p>Atendimento farmacêutico com seriedade, tradição e cuidado.</p></div>
+          <div><div className="footerBrand"><LogoMark /><div><strong>Pharmapenha</strong><span>Farmácia de Manipulação • Penha/SP</span></div></div><p>Atendimento farmacêutico com seriedade, tradição e cuidado.</p></div>
           <div><strong>Contato</strong><span>WhatsApp: (11) 99183-0136</span><span>Praça Nossa Senhora da Penha, 95</span><span>Penha de França - São Paulo/SP</span></div>
-          <div><strong>Informações institucionais</strong><span>CNPJ 60.348.547/0001-04</span><span>Responsável técnico: Rodrigo Farias Diogo</span><span>CRF-SP nº 62207</span></div>
+          <div><strong>Informações institucionais</strong><span>CNPJ 60.348.547/0001-04</span><span>Responsável técnico: Rodrigo Farias Diogo</span><span>CRF-SP nº 62207</span><span>Licença Sanitária e AFE/ANVISA: documentos disponíveis para consulta na loja física</span></div>
         </div>
       </footer>
 
-      <div className="mobileSticky"><WhatsAppButton button="Botão fixo mobile">Solicitar orçamento</WhatsAppButton></div>
+      <div className="mobileSticky"><WhatsAppButton button="Botão fixo mobile">Fazer orçamento</WhatsAppButton></div>
     </main>
   );
 }
