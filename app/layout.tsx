@@ -6,16 +6,16 @@ import './globals.css';
 const GA_ID = 'G-0CMMHZ0X0F';
 
 export const metadata: Metadata = {
-  title: 'Orçamento de Manipulação | Pharmapenha Penha/SP',
-  description: 'Envie sua receita e solicite orçamento de manipulação com a equipe Pharmapenha. Mais de 35 anos na Penha/SP, loja física e atendimento farmacêutico responsável.',
+  title: 'Farmácia de Manipulação na Penha | Pharmapenha',
+  description: 'Farmácia de manipulação tradicional na Penha/SP. Fale com a equipe Pharmapenha pelo WhatsApp e solicite um orçamento com atendimento local.',
   robots: { index: true, follow: true },
-  keywords: ['pharmapenha', 'pharmapenha penha', 'orçamento manipulado', 'orçamento farmácia de manipulação', 'farmácia de manipulação penha', 'atendimento farmacêutico penha', 'whatsapp pharmapenha'],
+  keywords: ['pharmapenha', 'pharmapenha penha', 'orçamento pharmapenha', 'farmácia de manipulação penha', 'farmácia de manipulação zona leste', 'atendimento farmacêutico penha', 'whatsapp pharmapenha'],
   alternates: {
     canonical: 'https://orcamentopharmapenha.online'
   },
   openGraph: {
-    title: 'Orçamento de Manipulação | Pharmapenha Penha/SP',
-    description: 'Canal oficial da Pharmapenha para solicitar orçamento de manipulação pelo WhatsApp. Mais de 35 anos na Penha/SP.',
+    title: 'Farmácia de Manipulação na Penha | Pharmapenha',
+    description: 'Canal oficial da Pharmapenha para orçamento pelo WhatsApp. Mais de 35 anos na Penha/SP.',
     type: 'website',
     url: 'https://orcamentopharmapenha.online',
     siteName: 'Pharmapenha',
@@ -25,14 +25,14 @@ export const metadata: Metadata = {
         url: 'https://orcamentopharmapenha.online/images/og-pharmapenha.jpg',
         width: 1200,
         height: 630,
-        alt: 'Pharmapenha – Orçamento de Manipulação na Penha/SP'
+        alt: 'Pharmapenha – Farmácia de Manipulação na Penha/SP'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Orçamento de Manipulação | Pharmapenha',
-    description: 'Envie sua receita e solicite orçamento pelo WhatsApp oficial da Pharmapenha.',
+    title: 'Farmácia de Manipulação na Penha | Pharmapenha',
+    description: 'Solicite um orçamento pelo WhatsApp oficial da Pharmapenha.',
     images: ['https://orcamentopharmapenha.online/images/og-pharmapenha.jpg']
   }
 };
@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               "url": "https://orcamentopharmapenha.online",
               "logo": "https://orcamentopharmapenha.online/images/logo-pharmapenha.png",
               "image": "https://orcamentopharmapenha.online/images/og-pharmapenha.jpg",
-              "description": "Canal oficial da Pharmapenha para atendimento e orçamento de manipulação na Penha, São Paulo.",
+              "description": "Canal oficial da Pharmapenha para atendimento local e orçamento na Penha, São Paulo.",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Praça Nossa Senhora da Penha, 95",
