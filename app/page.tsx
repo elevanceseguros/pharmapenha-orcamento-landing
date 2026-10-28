@@ -97,7 +97,7 @@ const stats = [
 ];
 
 const steps = [
-  { icon: 'chat' as const, title: 'Fale com um atendente', text: 'Chame no WhatsApp oficial e conte o que você precisa para iniciarmos seu orçamento.' },
+  { icon: 'chat' as const, title: 'Fale com um atendente', text: 'Abra o WhatsApp oficial e envie a mensagem inicial. O atendimento poderá solicitar informações adicionais ou prescrição, quando exigida.' },
   { icon: 'team' as const, title: 'Receba orientação inicial', text: 'Nossa equipe entende sua solicitação e informa os próximos passos com clareza.' },
   { icon: 'store' as const, title: 'Combine o atendimento', text: 'Você combina atendimento, retirada na loja ou entrega sob consulta, conforme disponibilidade.' }
 ];
@@ -120,9 +120,11 @@ const benefits = [
 ];
 
 const faq = [
-  { title: 'Como solicito um orçamento?', text: 'Clique no botão de WhatsApp, fale com um atendente e aguarde a orientação da equipe Pharmapenha.' },
+  { title: 'Como solicito um orçamento?', text: 'Clique no botão para abrir o WhatsApp oficial. O contato só é iniciado quando você envia a mensagem pelo aplicativo; o orçamento depende da análise da equipe.' },
   { title: 'O atendimento é presencial?', text: 'Sim. A Pharmapenha possui loja física na Penha de França, em São Paulo, com equipe pronta para atendimento local.' },
   { title: 'Vocês entregam?', text: 'A retirada pode ser feita na loja e as opções de entrega são informadas conforme região e disponibilidade.' },
+  { title: 'Preciso de receita?', text: 'Quando a legislação exigir prescrição, nossa equipe solicitará a documentação necessária. O orçamento não dispensa a avaliação da receita e das condições legais de atendimento.' },
+  { title: 'Como meus dados são tratados?', text: 'O WhatsApp é um serviço externo. Os dados que você decidir enviar serão usados para atender sua solicitação, conforme a Política de Privacidade da Pharmapenha.' },
   { title: 'Onde fica a loja?', text: 'Estamos na Praça Nossa Senhora da Penha, 95, na Penha de França, em São Paulo.' }
 ];
 
@@ -263,11 +265,12 @@ export default function Home() {
         <WhatsAppButton button="CTA final">Fazer orçamento pelo WhatsApp</WhatsAppButton>
       </section>
 
+      <section className="section" aria-label="Informações sobre WhatsApp e receitas" style={{paddingTop:20,paddingBottom:28}}><h2 style={{fontSize:30,letterSpacing:0}}>Antes de iniciar seu atendimento</h2><p>Ao tocar em “Fazer orçamento”, você será direcionado ao WhatsApp oficial da Pharmapenha. A conversa somente começará quando você enviar sua mensagem no aplicativo. Dados e documentos eventualmente enviados serão tratados para análise e atendimento da solicitação, conforme nossa <a href="/politica-de-privacidade" style={{textDecoration:'underline'}}>Política de Privacidade</a>. Quando necessário, a equipe solicitará prescrição e realizará as verificações exigidas pela legislação sanitária. A solicitação de orçamento não representa autorização automática de manipulação ou fornecimento.</p></section>
       <footer>
         <div className="footerGrid">
           <div><div className="footerBrand"><LogoMark /><div><strong>Pharmapenha</strong><span>Farmácia de Manipulação • Penha/SP</span></div></div><p>Atendimento farmacêutico com seriedade, tradição e cuidado.</p></div>
           <div><strong>Contato</strong><span>WhatsApp: (11) 99183-0136</span><span>Praça Nossa Senhora da Penha, 95</span><span>Penha de França - São Paulo/SP</span></div>
-          <div><strong>Informações institucionais</strong><span>CNPJ 60.348.547/0001-04</span><span>Responsável técnico: Rodrigo Farias Diogo</span><span>CRF-SP nº 62207</span><span>Licença Sanitária e AFE/ANVISA: documentos disponíveis para consulta na loja física</span></div>
+          <div><strong>Informações institucionais</strong><span>CNPJ 60.348.547/0001-04</span><span>Responsável técnico: Rodrigo Farias Diogo</span><span>CRF-SP nº 62207</span><span>Licença Sanitária e AFE/ANVISA: documentos disponíveis para consulta na loja física</span><a href="/politica-de-privacidade">Política de Privacidade</a><a href="/politica-de-cookies">Política de Cookies</a><button type="button" onClick={() => window.dispatchEvent(new Event('pharmapenha-cookie-preferences'))} className="footerPrefButton">Preferências de cookies</button></div>
         </div>
       </footer>
 
