@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
+import CookieConsent from './components/CookieConsent';
 import type { ReactNode } from 'react';
 import './globals.css';
-
-const GA_ID = 'G-0CMMHZ0X0F';
 
 export const metadata: Metadata = {
   title: 'Farmácia de Manipulação na Penha | Pharmapenha',
@@ -11,18 +9,18 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   keywords: ['pharmapenha', 'pharmapenha penha', 'orçamento pharmapenha', 'farmácia de manipulação penha', 'farmácia de manipulação zona leste', 'atendimento farmacêutico penha', 'whatsapp pharmapenha'],
   alternates: {
-    canonical: 'https://orcamentopharmapenha.online'
+    canonical: 'https://www.orcamentopharmapenha.online'
   },
   openGraph: {
     title: 'Farmácia de Manipulação na Penha | Pharmapenha',
     description: 'Canal oficial da Pharmapenha para orçamento pelo WhatsApp. Mais de 35 anos na Penha/SP.',
     type: 'website',
-    url: 'https://orcamentopharmapenha.online',
+    url: 'https://www.orcamentopharmapenha.online',
     siteName: 'Pharmapenha',
     locale: 'pt_BR',
     images: [
       {
-        url: 'https://orcamentopharmapenha.online/images/og-pharmapenha.jpg',
+        url: 'https://www.orcamentopharmapenha.online/images/og-pharmapenha.jpg',
         width: 1200,
         height: 630,
         alt: 'Pharmapenha – Farmácia de Manipulação na Penha/SP'
@@ -33,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Farmácia de Manipulação na Penha | Pharmapenha',
     description: 'Solicite um orçamento pelo WhatsApp oficial da Pharmapenha.',
-    images: ['https://orcamentopharmapenha.online/images/og-pharmapenha.jpg']
+    images: ['https://www.orcamentopharmapenha.online/images/og-pharmapenha.jpg']
   }
 };
 
@@ -48,9 +46,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               "@context": "https://schema.org",
               "@type": "Pharmacy",
               "name": "Pharmapenha",
-              "url": "https://orcamentopharmapenha.online",
-              "logo": "https://orcamentopharmapenha.online/images/logo-pharmapenha.png",
-              "image": "https://orcamentopharmapenha.online/images/og-pharmapenha.jpg",
+              "url": "https://www.orcamentopharmapenha.online",
+              "logo": "https://www.orcamentopharmapenha.online/images/logo-pharmapenha.png",
+              "image": "https://www.orcamentopharmapenha.online/images/og-pharmapenha.jpg",
               "description": "Canal oficial da Pharmapenha para atendimento local e orçamento na Penha, São Paulo.",
               "address": {
                 "@type": "PostalAddress",
@@ -93,24 +91,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
         {children}
-
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-tag-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              window.gtag = gtag;
-              gtag('js', new Date());
-              gtag('config', '${GA_ID}', { send_page_view: true });
-            `
-          }}
-        />
+        <CookieConsent />
       </body>
     </html>
   );
